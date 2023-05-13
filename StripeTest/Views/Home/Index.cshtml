@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form id="payment-form">
+    <div id="payment-request-button">
+        <!-- A Stripe Element will be inserted here. -->
+    </div>
+    <div id="link-authentication-element">
+        <!--Stripe.js injects the Link Authentication Element-->
+    </div>
+    
+    <div id="payment-element">
+        <!--Stripe.js injects the Payment Element-->
+    </div>
+    <button id="submit">
+        <div class="spinner hidden" id="spinner"></div>
+        <span id="button-text">Pay now</span>
+    </button>
+    <div id="payment-message" class="hidden"></div>
+</form>
+
+@section Scripts
+{
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="~/stripe/checkout.js" defer></script>
+    <script src="~/stripe/walletpay.js" defer></script>
+}
