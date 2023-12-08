@@ -23,5 +23,26 @@ namespace StripeTest.Controllers
 
             return Json(new { clientSecret = paymentIntent.ClientSecret });
         }
+
+        [Route("~/success")]
+        public IActionResult Success(string payment_intent, string payment_intent_client_secret, string redirect_status)
+        {
+            if (redirect_status.Equals("succeeded"))
+            {
+                //check payment intent
+                var service = new PaymentIntentService();
+                var result = service.Get(payment_intent);
+                if (result?.Status.Equals("succeeded") ?? false)
+                {
+                    ViewBag.Status = "Yes";
+                    return View();
+                }
+            }
+
+            ViewBag.Status = "No";
+            return View();
+        }
+
+        
     }
 }
